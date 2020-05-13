@@ -11,5 +11,3 @@ spring:
    profiles: test  #测试环境 
    application: 
      name:  chserivcecloud-config-ch-test
-
-    

@@ -1,0 +1,87 @@
+spring:
+  profiles:
+    active:
+      -dev
+
+---
+server:
+  port: 8001 #端口
+
+spring:
+   profiles: dev #开发环境
+   application:
+      name: microserivcecloud-dept #对外暴露的微服务的名称
+   datasource:
+       type: com.alibaba.druid.pool.DruidDataSource  #当前数据源的类型阿里云的
+       driver-class-name: com.mysql.jdbc.Driver #Mysql的驱动包org.git
+       url: jdbc:mysql://localhost:3306/cloud  #连接的数据库
+       username: root
+       password: root
+       dbcp2:
+          min-idle: 6         #当前数据库连接池的最小维持连接数
+          initial-size: 6     #初始化连接
+          max-total: 6        #最大连接数
+          max-wait-millis: 200 #等待连接获取的做大超时时间
+
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml  #mybatis配置文件的配置路径
+  type-aliases-package: com.qd.cloud.entity #所有的entity的实体
+  #类路径
+  mapper-locations:
+  - classpath:mybatis/mapper/**/*.xml   #mapper映射的文件
+
+eureka:
+  client:
+    service-url:
+     #defaultZone: http://localhost:7001/eureka  #注入eureak (单机)
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+  instance:
+    instance-id: microserivcecloud-dept8001-hystrix  #在ureak服务器端 将Id别名显示
+    prefer-ip-address: true   #开启IP
+info:    #追加微服务信息的描述
+  app.name: microserivcecloud-dept   #工程名称
+  company.name:  www.server.com     #公司名称
+  build.artifactId:  $project.artifactId$  #灵活的调用在父工程有配置build
+  build.version:  $project.version$
+
+
+---
+server:
+  port: 8002 #端口
+
+spring:
+   profiles: test #开发环境
+   application:
+      name: microserivcecloud-dept #对外暴露的微服务的名称
+   datasource:
+       type: com.alibaba.druid.pool.DruidDataSource  #当前数据源的类型阿里云的
+       driver-class-name: com.mysql.jdbc.Driver #Mysql的驱动包org.git
+       url: jdbc:mysql://localhost:3306/cloud  #连接的数据库
+       username: root
+       password: root
+       dbcp2:
+          min-idle: 6         #当前数据库连接池的最小维持连接数
+          initial-size: 6     #初始化连接
+          max-total: 6        #最大连接数
+          max-wait-millis: 200 #等待连接获取的做大超时时间
+
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml  #mybatis配置文件的配置路径
+  type-aliases-package: com.qd.cloud.entity #所有的entity的实体
+  #类路径
+  mapper-locations:
+  - classpath:mybatis/mapper/**/*.xml   #mapper映射的文件
+
+eureka:
+  client:
+    service-url:
+     #defaultZone: http://localhost:7001/eureka  #注入eureak (单机)
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+  instance:
+    instance-id: microserivcecloud-dept8001-hystrix  #在ureak服务器端 将Id别名显示
+    prefer-ip-address: true   #开启IP
+info:    #追加微服务信息的描述
+  app.name: microserivcecloud-dept   #工程名称
+  company.name:  www.server.com     #公司名称
+  build.artifactId:  $project.artifactId$  #灵活的调用在父工程有配置build
+  build.version:  $project.version$

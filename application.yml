@@ -1,19 +1,33 @@
-spring:
-   profiles:
-      active:
-        -dev
 
+spring:
+  profiles:
+    active:
+      -dev
 
 ---
+server:
+  port: 8201
 spring:
-  profiles: dev
+  profiles: dev  #开发环境
   application:
-     name: chserivcecloud-config-ch-dev
+    name: serivcecloud-config-client
 
-
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/
 
 ---
+
+server:
+  port: 8202
+
 spring:
-  profiles: test
+  profiles: test  #开发环境
   application:
-     name:  chserivcecloud-config-ch-test
+    name: serivcecloud-config-client
+
+eureka:
+  client:
+    service-url:
+       defaultZone: http://eureka7001.com:7001/eureka/
